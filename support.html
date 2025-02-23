@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وكالة أهل الخير</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('k.jpg') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            color: white;
+        }
+        .header {
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px; /* مسافة بين الصورة والنص */
+        }
+        .header img {
+            width: 50px; /* حجم الصورة */
+            height: 50px;
+            border-radius: 50%; /* جعل الصورة دائرية */
+        }
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .nav a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        .nav a:hover {
+            color: #ff5733; /* لون برتقالي عند التمرير */
+        }
+        .content {
+            padding: 50px;
+        }
+        .section {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        /* تصميم جديد لأيقونة التطبيق */
+        .app-icon {
+            width: 100px; /* زيادة حجم الأيقونة */
+            height: 100px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 25px; /* زوايا أكثر استدارة */
+            border: 3px solid #ffcc00;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb); /* تدرج لوني جميل */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* ظل أكثر وضوحًا */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: float 3s ease-in-out infinite; /* تأثير طفو */
+        }
+        .app-icon:hover {
+            transform: scale(1.1) rotate(10deg); /* تكبير ودوران عند التمرير */
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5); /* ظل أكبر عند التمرير */
+        }
+        /* تأثير الطفو */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        .download-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #ff5733;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .download-button:hover {
+            background-color: #e64a19; /* لون داكن عند التمرير */
+        }
+        .social-icons {
+            margin-top: 30px;
+        }
+        .social-icons a {
+            margin: 0 10px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .social-icons a:hover {
+            transform: scale(1.2); /* تكبير الأيقونة عند التمرير */
+        }
+        .social-icons img {
+            width: 40px;
+            height: 40px;
+        }
+        /* شريط متحرك */
+        .marquee {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 0;
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffcc00;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 30s linear infinite; /* زيادة المدة لجعل الشريط أبطأ */
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        /* فيديو يظهر عند الدخول */
+        #intro-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 9999;
+            display: none; /* مخفي في البداية */
+        }
+        /* تعديل لصورة السمايل المتحركة بجانب أيقونة التطبيق */
+        .app-icon-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px; /* مسافة بين الأيقونة والصورة المتحركة */
+        }
+        .smile-icon {
+            width: 50px; /* حجم الصورة المتحركة */
+            height: 50px;
+            border-radius: 50%; /* جعل الصورة دائرية */
+        }
+    </style>
+</head>
+<body>
+    <!-- فيديو يظهر عند الدخول -->
+    <video id="intro-video" autoplay muted>
+        <source src="g.mp4" type="video/mp4">
+        المتصفح الخاص بك لا يدعم تشغيل الفيديو.
+    </video>
+
+    <!-- شريط متحرك -->
+    <div class="marquee">
+        <span>✨ قادة شجعان في تطبيق هابي: هم من يصنعون التميز ويقودون التغيير! ✨ | 🌟 قادة هابي هم من يزرعون الأمل ويحققون الأحلام! 🌟 | 💪 قادة هابي: هم من يقودون بقلوبهم قبل عقولهم! 💪</span>
+    </div>
+
+    <!-- زر تشغيل الموسيقى -->
+    <button onclick="playAudio()" style="position: fixed; top: 60px; right: 10px; padding: 10px; background: #ff5733; color: white; border: none; border-radius: 5px; cursor: pointer;">
+     القاىد شهم🤫
+    </button>
+
+    <!-- الموسيقى -->
+    <audio id="background-music" loop>
+        <source src="l.mp3" type="audio/mpeg">
+        المتصفح الخاص بك لا يدعم تشغيل الموسيقى.
+    </audio>
+
+    <!-- العنوان مع الصورة المتحركة -->
+    <div class="header">
+        <img src="w.gif" alt="سمايل متحرك"> <!-- أضف رابط الصورة المتحركة هنا -->
+        مشاهير وكالة أهل الخير في تطبيق هابي
+    </div>
+    <div class="nav">
+        <a href="#" onclick="showSection('home')">الرئيسية</a>
+        <a href="#" onclick="showSection('videos')">مقاطع فيديو</a>
+        <a href="#" onclick="showSection('photos')">الصور</a>
+    </div>
+     
+    <div class="content">
+        <div id="home" class="section active">
+            <h2>مرحبًا بكم في وكالة أهل الخير</h2>
+            <p>نحن وكالة متخصصة في إدارة الدردشات الصوتية داخل تطبيق هابي.</p>
+            <!-- إضافة الصورة المتحركة بجانب أيقونة التطبيق -->
+            <div class="app-icon-container">
+                <img src="p.jpg" alt="تطبيق هابي" class="app-icon">
+                <img src="w.gif" alt="سمايل متحرك" class="smile-icon"> <!-- أضف رابط الصورة المتحركة هنا -->
+            </div>
+            <a href="https://h5.habi.cc/#/share/1060070?lang=ar&h_m=1090747" class="download-button">انقر لدخول وكاله اهل الخير</a>
+            <!-- إضافة أيقونات التواصل الاجتماعي -->
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank"><img src="p.jpg" alt="فيسبوك"></a>
+                <a href="https://twitter.com" target="_blank"><img src="p.jpg" alt="تويتر"></a>
+                <a href="https://instagram.com" target="_blank"><img src="p.jpg" alt="إنستغرام"></a>
+            </div>
+        </div>
+        <div id="videos" class="section">
+            <h2>مقاطع الفيديو</h2>
+            <video width="320" height="240" controls>
+                <source src="g.mp4" type="video/mp4">
+                المتصفح الخاص بك لا يدعم تشغيل الفيديو.
+            </video>
+        </div>
+        <div id="photos" class="section">
+            <h2>معرض الصور</h2>
+            <img src="i.jpg" alt="صورة من الدردشة" width="300">
+        </div>
+    </div>
+    <script>
+        // دالة لتشغيل الموسيقى
+        function playAudio() {
+            const audio = document.getElementById('background-music');
+            audio.play();
+            // إخفاء زر التشغيل بعد النقر عليه
+            document.querySelector('button').style.display = 'none';
+        }
+
+        // دالة لإظهار الأقسام
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // تشغيل الموسيقى تلقائيًا بعد تفاعل المستخدم مع الصفحة
+        document.addEventListener('click', function() {
+            const audio = document.getElementById('background-music');
+            if (audio.paused) {
+                audio.play();
+            }
+        });
+
+        // عرض الفيديو عند الدخول وإخفاؤه بعد 8 ثوانٍ
+        window.onload = function() {
+            const introVideo = document.getElementById('intro-video');
+            introVideo.style.display = 'block'; // إظهار الفيديو
+            introVideo.play(); // تشغيل الفيديو
+
+            setTimeout(() => {
+                introVideo.style.display = 'none'; // إخفاء الفيديو بعد 8 ثوانٍ
+            }, ); // 8000 ميلي ثانية = 8 ثوانٍ
+        };
+    </script>
+</body>
+</html> 
